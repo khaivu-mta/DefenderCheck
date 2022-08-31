@@ -100,6 +100,12 @@ namespace DefenderCheck
                 Scan(@"C:\Temp\testfile.exe", true);
                 byte[] offendingBytes = new byte[256];
 
+                if (originalarray.Length <= 2)
+                {
+                    HexDump(originalarray, 16);
+                    File.Delete(@"C:\Temp\testfile.exe");
+                    Environment.Exit(0);
+                }
                 if (originalarray.Length < 256)
                 {
                     Array.Resize(ref offendingBytes, originalarray.Length);
